@@ -10,16 +10,16 @@
     <div id="caixa_login">
         <h4>Login no sistema</h4>
         <form action="fazer_login.php" method="post">
-            <input type="text" 
-                   name="usuario_digitado"
-                   placeholder="USUÁRIO">
+            <input type="email"
+                   name="email_digitado"
+                   placeholder="E-MAIL">
             <br><br>
             <input type="password"
                    name="senha_digitada"
                    placeholder="SENHA">
             <br><br>
             <?php
-                echo isset($_GET['erro1'])? 
+                echo isset($_GET['erro1'])?
                     "<div>Usuário e/ou senha <br> incorretos</div><br><br>"
                     :"";
                 echo isset($_GET['erro2'])?

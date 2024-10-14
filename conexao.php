@@ -1,8 +1,8 @@
 <?php
-$maquina = "";
-$usuario = "";
-$senha = "";
-$nome_do_banco = "";
+$maquina = "localhost";
+$usuario = "root";
+$senha = "root";
+$nome_do_banco = "sistema_comercio";
 $porta = 3306;
 try {
     $pdo = new PDO("mysql:host=$maquina;port=$porta;dbname=$nome_do_banco;charset=utf8", "$usuario", "$senha");
