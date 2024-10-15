@@ -20,18 +20,31 @@
 </head>
 <body>
     <h1>Gerenciar Produtos</h1>
-    <form action="" method="get">
+    <form action="pg_gerenciar.php" method="get">
         <input type="text" name="produto_pesquisado"
                 placeholder="Digite o Nome do Produto">
         <button type="submit">Pesquisar</button>
-    </form>
+    </form> <br><br>
     <div id="conteudo">
         <?php
             include "conexao.php";
             $sql = "SELECT * FROM tb_produtos";
+            if(isset($_GET['produto_pesquisado'])){
+                $pesquisa = $_GET['produto_pesquisado'];
+                $sql = "SELECT * FROM tb_produtos
+                        WHERE nome_produto LIKE '%$pesquisa%'";
+            }
             $consultar = $pdo->prepare($sql);
             try{
                 $consultar->execute();
+                if($consultar->rowCount() == 0){
+                    echo "Nenhum Produto Encontrado! <br> <br>";
+                }
+                    echo "<div style='min-width:100%; margin-bottom:20px;'>
+                        Qtd de Produtos Encontrados: "
+                        .$consultar->rowCount().
+                        "</div>";
+
                 $resultados = $consultar->fetchALL(PDO::FETCH_ASSOC);
                 foreach($resultados as $item){
                     $id = $item['id_produto'];
